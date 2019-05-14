@@ -11,6 +11,7 @@ public class ParserInitializer {
 
         String[] symbols = null;
         PTBlock[][] parseTable = null;
+        int startNode = 0;
 
         if (!fileExists(nptPath))
         {
@@ -30,6 +31,8 @@ public class ParserInitializer {
                 tmpArr = sc.nextLine().trim().split(" ");
                 rowSize = Integer.parseInt(tmpArr[0]);
                 colSize = Integer.parseInt(tmpArr[1]);
+
+                startNode = Integer.parseInt(sc.nextLine());
 
                 String SL = sc.nextLine();
                 // This is the line creates an array of symbols depending on the parse table read.
@@ -66,7 +69,7 @@ public class ParserInitializer {
             return null;
         }
 
-        return new Parser(is, log, bin, symbols, parseTable, sourceName);
+        return new Parser(is, log, bin, symbols, parseTable, startNode, sourceName);
     }
 
     static boolean fileExists(String path) {

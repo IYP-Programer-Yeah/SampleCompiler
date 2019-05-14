@@ -1,6 +1,7 @@
 package scanner;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class ScannerWrapper {
     public String getScanner() {
@@ -9,18 +10,19 @@ public class ScannerWrapper {
 
     String analyzer;
 
-    boolean isEof = false;
+    ArrayList<String> tokens;
+    int tokenIndex;
 
     public ScannerWrapper(InputStream is) throws Exception {
         analyzer = new String();
+        tokens = new ArrayList<>();
+        tokenIndex = 0;
+        tokens.add("Test4");
+        tokens.add("Test3");
+        tokens.add("$");
     }
 
     public String nextToken() throws Exception {
-        if (!isEof) {
-            isEof = true;
-            return "Test3";
-        }
-        else
-            return "$";
+        return tokens.get(tokenIndex++);
     }
 }
